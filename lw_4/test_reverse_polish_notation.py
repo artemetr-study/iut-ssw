@@ -48,7 +48,7 @@ class ReversePolishNotationTestCase(unittest.TestCase):
 
     def test_unopened_bracket_exception(self):
         self.assertRaises(ReversePolishNotationException, ReversePolishNotation.from_expression,
-                          'r/(2/(b–c+d))*f)–e*l=a*(2–3+4*8–2/1)')
+                          'r/(2/(b-c+d))*f)-e*l=a*(2-3+4*8-2/1)')
 
     def test_1(self):
         expression, excepted_expression = '(f+g-k)*2*(a+bd/c*d)=a/d*cf', 'f g + k - 2 * a bd c / d * + * a d / cf * ='
