@@ -51,7 +51,7 @@ class ReversePolishNotationTestCase(unittest.TestCase):
                           'r/(2/(b-c+d))*f)-e*l=a*(2-3+4*8-2/1)')
 
     def test_1(self):
-        expression, excepted_expression = '(f+g-k)*2*(a+bd/c*d)=a/d*cf', 'f g + k - 2 * a bd c / d * + * a d / cf * ='
+        expression, excepted_expression = '(f+g-k)*2*(a+b-d/c*d)=a/d*c-f', 'f g + k - 2 * a b + d c / d * - * a d / c * f - ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_2(self):
@@ -59,7 +59,7 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_3(self):
-        expression, excepted_expression = '(ad/(2*(bc+d))*f)e=a+a/5*6', 'ad 2 bc d + * / f * e a a 5 / 6 * + ='
+        expression, excepted_expression = '(a-d/(2*(b-c+d))*f)e=a+a/5*6', 'a d 2 b c - d + * / f * - e a a 5 / 6 * + ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_4(self):
@@ -67,15 +67,15 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_5(self):
-        expression, excepted_expression = '2+(ab)*2/(ab)*2=(ab)*2', '2 ab 2 * ab / 2 * + ab 2 * ='
+        expression, excepted_expression = '2+(a-b)*2/(a-b)*2=(ab)*2', '2 a b - 2 * a b - / 2 * + ab 2 * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_6(self):
-        expression, excepted_expression = 'y*(2(3+4-5)*8)2/1*8=(ab+c*2)/1*(a+b)', 'y 2 3 4 + 5 - 8 * 2 * 1 / 8 * ab c 2 * + 1 / a b + * ='
+        expression, excepted_expression = 'y*(2-(3+4-5)*8)-2/1*8=(a-b+c*2)/1*(a+b)', 'y 2 3 4 + 5 - 8 * - * 2 1 / 8 * - a b - c 2 * + 1 / a b + * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_7(self):
-        expression, excepted_expression = '2*3/1+(1+1-0)/(a+a)=((ab)*(a+b))/2*4', '2 3 * 1 / 1 1 + 0 - a a + / + ab a b + * 2 / 4 * ='
+        expression, excepted_expression = '2*3/1+(1+1-0)/(a+a)=((a-b)*(a+b))/2*4', '2 3 * 1 / 1 1 + 0 - a a + / + a b - a b + * 2 / 4 * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_8(self):
@@ -95,7 +95,7 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_12(self):
-        expression, excepted_expression = 't*(ap*d/(2/(bc+d))*f)e*l=a', 't ap d * 2 bc d + / / f * e * l * a ='
+        expression, excepted_expression = 't*(a-p*d/(2/(b-c+d))*f)e*l=a', 't a p d * 2 b c - d + / / f * - e * l * a ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_13(self):
@@ -103,15 +103,15 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_14(self):
-        expression, excepted_expression = 'f/(ab)*2=r/((g-h+k)*(a+s-d))*f*g', 'f ab / 2 * r g h - k + a s + d - * / f * g * ='
+        expression, excepted_expression = 'f/(a-b)*2=r/((g-h+k)*(a+s-d))*f*g', 'f a b - / 2 * r g h - k + a s + d - * / f * g * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_15(self):
-        expression, excepted_expression = '((l-k+h)/(g-h+k)*4)/p=d-2*(a+bd/c*d)', 'l k - h + g h - k + / 4 * p / d 2 a bd c / d * + * - ='
+        expression, excepted_expression = '((l-k+h)/(g-h+k)*4)/p=d-2*(a+b-d/c*d)', 'l k - h + g h - k + / 4 * p / d 2 a b + d c / d * - * - ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_16(self):
-        expression, excepted_expression = 'f*(2+ab)*2/(ab)*2=(ab)*2/1', 'f 2 ab + * 2 * ab / 2 * ab 2 * 1 / ='
+        expression, excepted_expression = 'f*(2+a-b)*2/(a-b)*2=(a-b)*2/1', 'f 2 a + b - * 2 * a b - / 2 * a b - 2 * 1 / ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_17(self):
@@ -119,15 +119,15 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_18(self):
-        expression, excepted_expression = 'a*(a+b)*2/2-(ab)*(a+b)=(ab)*2', 'a a b + * 2 * 2 / ab a b + * - ab 2 * ='
+        expression, excepted_expression = 'a*(a+b)*2/2-(a-b)*(a+b)=(a-b)*2', 'a a b + * 2 * 2 / a b - a b + * - a b - 2 * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_19(self):
-        expression, excepted_expression = '3*((r-y)*(bc+d))*f=k+h/(g-h+k)*4', '3 r y - bc d + * * f * k h g h - k + / 4 * + ='
+        expression, excepted_expression = '3*((r-y)*(b-c+d))*f=k+h/(g-h+k)*4', '3 r y - b c - d + * * f * k h g h - k + / 4 * + ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_20(self):
-        expression, excepted_expression = '(r/(2/(bc+d))*f)e*l=a*(23+4*82/1)', 'r 2 bc d + / / f * e l * a 23 4 82 * 1 / + * ='
+        expression, excepted_expression = '(r/(2/(b-c+d))*f)-e*l=a*(2-3+4*8-2/1)', 'r 2 b c - d + / / f * e l * - a 2 3 - 4 8 * + 2 1 / - * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
 
