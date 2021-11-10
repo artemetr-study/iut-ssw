@@ -67,7 +67,7 @@ class ReversePolishNotationTestCase(unittest.TestCase):
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_5(self):
-        expression, excepted_expression = '2+(a-b)*2/(a-b)*2=(ab)*2', '2 a b - 2 * a b - / 2 * + ab 2 * ='
+        expression, excepted_expression = '2+(a-b)*2/(a-b)*2=(a-b)*2', '2 a b - 2 * a b - / 2 * + a b - 2 * ='
         self.assertEqual(str(ReversePolishNotation.from_expression(expression)), excepted_expression)
 
     def test_6(self):
