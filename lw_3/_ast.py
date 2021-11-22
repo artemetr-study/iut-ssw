@@ -2,7 +2,7 @@ import lw_3.tokens as t
 
 
 class Ast:
-    COMPOSITE_TOKENS = t.CompositeToken.subclasses()
+    COMPOSITE_TOKENS = t.CompositeBaseToken.subclasses()
     MAX_LEN = max([i.needed_len() for i in COMPOSITE_TOKENS])
     MIN_LEN = min([i.needed_len() for i in COMPOSITE_TOKENS])
 

@@ -2,7 +2,7 @@ import lw_3.tokens as t
 
 
 class Lexer:
-    SIMPLE_TOKENS = t.SimpleToken.__subclasses__()
+    SIMPLE_TOKENS = t.SimpleBaseToken.__subclasses__()
 
     @classmethod
     def parse(cls, expression: str):
