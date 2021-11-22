@@ -19,6 +19,9 @@ class WriteLnToken(CompositeBaseToken):
 class IdentifierListToken(RecursiveCompositeBaseToken):
     _AVAILABLE_TOKEN_SETS = [[IdentifierToken], [CLS, CommaToken, IdentifierToken]]
 
+    def get_all_identifiers(self) -> list:
+        return [self.value[0]] if self.value[0].__class__ == IdentifierToken else self.value[0].get_all_identifiers() + [self.value[2]]
+
 
 class InputOperatorToken(CompositeBaseToken):
     _AVAILABLE_TOKEN_SETS = [[ReadLnToken, OpeningParenthesisToken, IdentifierListToken, ClosingParenthesisToken]]
